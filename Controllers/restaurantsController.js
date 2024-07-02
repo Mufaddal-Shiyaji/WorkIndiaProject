@@ -71,6 +71,33 @@ const bookSlot = (req, res) => {
         res.status(400).send("Slot already booked");
         return;
       }
+
+      let sql1 = `SELECT * FROM Restaurants WHERE place_id=?`;
+      db.query(sql1, req.body.place_id, (err, result1) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send("Error searching Restaurant");
+          return;
+        }
+        if (result1.length <= 0) {
+          res.status(400).send("Restaurant doesnt exist");
+          return;
+        }
+      });
+
+      let sql2 = `SELECT * FROM Users WHERE user_id=?`;
+      db.query(sql2, req.body.user_id, (err, result2) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send("Error searching User");
+          return;
+        }
+        if (result2.length <= 0) {
+          res.status(400).send("User doesnt exist");
+          return;
+        }
+      });
+
       const sql = "INSERT INTO BookedSlots SET ?";
       db.query(sql, post, (err, result) => {
         if (err) {

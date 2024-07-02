@@ -55,4 +55,33 @@ const getRestaurants = (req, res) => {
   });
 };
 
-export { addRestaurants, getRestaurants };
+const bookSlot = (req, res) => {
+  const post = req.body;
+  const search = `SELECT * FROM BookedSlots WHERE place_id=? AND start_time=? AND end_time=?`;
+  db.query(
+    search,
+    [req.body.place_id, req.body.start_time, req.body.end_time],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Error searching Restaurant");
+        return;
+      }
+      if (result.length > 0) {
+        res.status(400).send("Slot already booked");
+        return;
+      }
+      const sql = "INSERT INTO BookedSlots SET ?";
+      db.query(sql, post, (err, result) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send("Error booking slot");
+          return;
+        }
+        console.log(result);
+        res.status(200).send(result);
+      });
+    }
+  );
+};
+export { addRestaurants, getRestaurants, bookSlot };

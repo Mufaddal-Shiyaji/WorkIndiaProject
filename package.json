@@ -1,0 +1,20 @@
+{
+  "name": "workindiaproject-1",
+  "version": "1.0.0",
+  "description": "WorkIndiaProject",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mufaddal-Shiyaji/WorkIndiaProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mufaddal-Shiyaji/WorkIndiaProject/issues"
+  },
+  "homepage": "https://github.com/Mufaddal-Shiyaji/WorkIndiaProject#readme"
+}

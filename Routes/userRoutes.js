@@ -1,9 +1,9 @@
-const express = require("express");
-let {
+import express from "express";
+import {
   getUsers,
   createUsers,
   loginUsers,
-} = require("../Controllers/userController.js");
+} from "../Controllers/userController.js";
 
 const router = express.Router();
 
